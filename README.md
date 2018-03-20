@@ -2,6 +2,8 @@
 
 This module is intended to help teams build testable artifacts based on feature branch work of Node.js projects that have complex dependency trees of in-house modules.
 
+[![Build Status](https://travis-ci.org/ReadyTalk/testable-artifact-builder.svg?branch=master)](https://travis-ci.org/ReadyTalk/testable-artifact-builder)
+
 ## What does that mean?
 
 Imagine you are building an app with the following dependency chain:
