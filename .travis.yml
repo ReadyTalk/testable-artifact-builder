@@ -4,7 +4,7 @@ node_js:
 before_script:
 - >
   if ! [[ ${TRAVIS_TAG} ]]; then
-    node index.js snapshotProject ${TRAVIS_BUILD_NUMBER} ${TRAVIS_BRANCH;
+    node index.js snapshotProject ${TRAVIS_BUILD_NUMBER} ${TRAVIS_BRANCH};
   fi
 #deploy:
 #  provider: npm
