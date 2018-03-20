@@ -1,0 +1,26 @@
+{
+  "name": "testable-artifact-builder",
+  "version": "0.1.0",
+  "description": "",
+  "main": "index.js",
+  "bin": "./index.js",
+  "scripts": {
+    "test": "jasmine"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ReadyTalk/testable-artifact-builder"
+  },
+  "author": "Nathan Thompson (https://github.com/thompsnm)",
+  "license": "Apache 2.0",
+  "homepage": "https://github.com/ReadyTalk/testable-artifact-builder",
+  "dependencies": {
+    "chalk": "^2.2.0",
+    "commander": "^2.11.0",
+    "semver": "^5.4.1"
+  },
+  "devDependencies": {
+    "jasmine": "^2.8.0",
+    "proxyquire": "^1.8.0"
+  }
+}
