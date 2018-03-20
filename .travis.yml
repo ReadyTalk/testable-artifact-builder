@@ -2,15 +2,9 @@ language: node_js
 node_js:
 - '8'
 before_script:
-- "echo ${TRAVIS_TAG}"
-- "echo ${TRAVIS_BRANCH}"
-- "echo 1"
-- "if [[ ${TRAVIS_TAG} ]]; then echo 'in if'; fi"
-- "echo 2"
-- "if ! [[ ${TRAVIS_TAG} ]]; then echo 'in if'; fi"
 - >
   if ! [[ ${TRAVIS_TAG} ]]; then
-    echo 'in split if';
+    node index.js snapshotProject ${TRAVIS_BUILD_NUMBER} ${TRAVIS_BRANCH;
   fi
 #deploy:
 #  provider: npm
