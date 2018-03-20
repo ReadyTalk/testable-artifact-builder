@@ -21,6 +21,7 @@
   },
   "devDependencies": {
     "jasmine": "^2.8.0",
+    "jasmine-spec-reporter": "^4.2.1",
     "proxyquire": "^1.8.0"
   }
 }
