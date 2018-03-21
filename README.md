@@ -185,4 +185,4 @@ To publish a new release version of `testable-artifact-builder`, follow these st
 2. Run `npm version [major | minor | patch]` to correctly increment the version.
 3. Run `git push --follow-tags` to commit the updated package.json file and new tag.
 
-Travis CI will identify that the build was triggered by a Git Tag and publish a new release version as a result.
+Travis CI will identify that a new build was triggered by a Git Tag and publish a new release version as a result.
