@@ -2,17 +2,15 @@ language: node_js
 node_js:
 - '8'
 env:
-- NPM_TAG
+- NPM_TAG=""
 before_deploy:
 - >
   if ! [[ ${TRAVIS_TAG} ]]; then
     echo "Build is not from a Git Tag; running the snapshotProject script.";
     node index.js snapshotProject ${TRAVIS_BUILD_NUMBER} ${TRAVIS_BRANCH};
-    NPM_TAG = ""
     #NPM_TAG = ${TRAVIS_BRANCH}
   else
     echo "Build is from a Git Tag; skipping the snapshotProject script.";
-    NPM_TAG = ""
   fi
 deploy:
   provider: npm
