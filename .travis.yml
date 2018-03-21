@@ -1,3 +1,42 @@
 language: node_js
 node_js:
-    - "8"
+- '8'
+
+before_deploy:
+- >
+  if ! [[ ${TRAVIS_TAG} ]]; then
+    echo "Build is not from a Git Tag; running the snapshotProject script.";
+    node index.js snapshotProject ${TRAVIS_BUILD_NUMBER} ${TRAVIS_BRANCH};
+  else
+    echo "Build is from a Git Tag; skipping the snapshotProject script.";
+  fi
+
+deploy:
+# Deploy snapshots when TRAVIS_TAG is not set
+- provider: npm
+  email: nathan.mike.thompson@gmail.com
+  api_key:
+    # Encrypted using the Travis CLI. Ref:
+    #   https://docs.travis-ci.com/user/deployment/npm/#NPM-auth-token
+    #   https://docs.travis-ci.com/user/encryption-keys/#Usage
+    secure: R3mBbaY5YBDhO4OUm5QQfoUSU09B6v1vNK0ykWbaGwS1C5kSgMrZ9UGPj5xtaIstD/FDfKcACNgmAyH5v7bk0e/uLnfXxAdjNhzuhi1KP4N9jedwKEp+dKEH1u3oZcdMM/1+RILAQ3LM8WCIch8voozd+sP0iWjV3d9Wz8w+pUBSJCGElGBEuLb9DJWHNxRTiX9TW+moBTw5e8N50nKJZygzsY1ldIlbmdfH8EKr7kwVxiHwjEDZddS6NyNbNfpl6A44MDf7ljuyEsEg31xrZHqwyt/K0rOle8+2cpus4P5bOJcgEJ6zfhIIEeP9iXcwpBTlTYeYMahVZN+l0yyn4LucD9cI3sW8cL33hIiYwRFA4hmFsyQ3jjgp/29Lf/r2zpWjkaVflVUsJjMPw6nK6oXRT56brzejZHyI2efmAs2qhxLUmky7ZmkBn5YfyfN9VMDfp+4CDwnWQ/8ixJjqc75CEeC7Dgv+MI/kTDKilrsBNqB4ISYqWAwPLV9pSlg6dLkWKDsd1u+1yntQ0NTvWrg9KHE6nJqAmQSbEfbKMS7IHv/7jURckbrZx9zuk77lZcBKo4WhEHVd8msxkAj8ifJTkUrQwmpNluBDHnpubGogI+VT88tmGuRRhEO1igBsDuIO4Hr2ilT0+fRnKLvv12WU/97VVTtOr9A2vx9G4VU=
+  on:
+    repo: ReadyTalk/testable-artifact-builder
+    all_branches: true
+    tags: false
+  tag: ${TRAVIS_BRANCH}
+  # Prevent Travis CI from reverting changes from the snapshotProject script. Ref:
+  #   https://docs.travis-ci.com/user/deployment#Uploading-Files-and-skip_cleanup
+  skip_cleanup: true
+
+# Deploy release versions when TRAVIS_TAG is set
+- provider: npm
+  email: nathan.mike.thompson@gmail.com
+  api_key:
+    # Encrypted using the Travis CLI. Ref:
+    #   https://docs.travis-ci.com/user/deployment/npm/#NPM-auth-token
+    #   https://docs.travis-ci.com/user/encryption-keys/#Usage
+    secure: R3mBbaY5YBDhO4OUm5QQfoUSU09B6v1vNK0ykWbaGwS1C5kSgMrZ9UGPj5xtaIstD/FDfKcACNgmAyH5v7bk0e/uLnfXxAdjNhzuhi1KP4N9jedwKEp+dKEH1u3oZcdMM/1+RILAQ3LM8WCIch8voozd+sP0iWjV3d9Wz8w+pUBSJCGElGBEuLb9DJWHNxRTiX9TW+moBTw5e8N50nKJZygzsY1ldIlbmdfH8EKr7kwVxiHwjEDZddS6NyNbNfpl6A44MDf7ljuyEsEg31xrZHqwyt/K0rOle8+2cpus4P5bOJcgEJ6zfhIIEeP9iXcwpBTlTYeYMahVZN+l0yyn4LucD9cI3sW8cL33hIiYwRFA4hmFsyQ3jjgp/29Lf/r2zpWjkaVflVUsJjMPw6nK6oXRT56brzejZHyI2efmAs2qhxLUmky7ZmkBn5YfyfN9VMDfp+4CDwnWQ/8ixJjqc75CEeC7Dgv+MI/kTDKilrsBNqB4ISYqWAwPLV9pSlg6dLkWKDsd1u+1yntQ0NTvWrg9KHE6nJqAmQSbEfbKMS7IHv/7jURckbrZx9zuk77lZcBKo4WhEHVd8msxkAj8ifJTkUrQwmpNluBDHnpubGogI+VT88tmGuRRhEO1igBsDuIO4Hr2ilT0+fRnKLvv12WU/97VVTtOr9A2vx9G4VU=
+  on:
+    repo: ReadyTalk/testable-artifact-builder
+    tags: true
