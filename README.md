@@ -1,6 +1,6 @@
-# testable-artifact-builder
-
 [![Build Status](https://travis-ci.org/ReadyTalk/testable-artifact-builder.svg?branch=master)](https://travis-ci.org/ReadyTalk/testable-artifact-builder)
+
+# testable-artifact-builder
 
 This module is intended to help teams build testable artifacts based on feature branch work of Node.js projects that have complex dependency trees of in-house modules.
 
