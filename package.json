@@ -1,7 +1,7 @@
 {
   "name": "testable-artifact-builder",
   "version": "0.1.1",
-  "description": "",
+  "description": "A module to help teams build testable artifacts based on feature branch work of Node.js projects that have a complex dependency tree of in-house modules.",
   "main": "index.js",
   "bin": "./index.js",
   "scripts": {
