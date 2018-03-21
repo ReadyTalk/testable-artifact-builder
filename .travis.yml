@@ -1,13 +1,18 @@
 language: node_js
 node_js:
 - '8'
+env:
+- NPM_TAG
 before_deploy:
 - >
   if ! [[ ${TRAVIS_TAG} ]]; then
     echo "Build is not from a Git Tag; running the snapshotProject script.";
     node index.js snapshotProject ${TRAVIS_BUILD_NUMBER} ${TRAVIS_BRANCH};
+    NPM_TAG = ""
+    #NPM_TAG = ${TRAVIS_BRANCH}
   else
     echo "Build is from a Git Tag; skipping the snapshotProject script.";
+    NPM_TAG = ""
   fi
 deploy:
   provider: npm
@@ -20,7 +25,7 @@ deploy:
   on:
     repo: ReadyTalk/testable-artifact-builder
     all_branches: true
-  tag: ${TRAVIS_BRANCH}
+  tag: ${NPM_TAG}
   # Prevent Travis CI from reverting changes from the snapshotProject script. Ref:
   #   https://docs.travis-ci.com/user/deployment#Uploading-Files-and-skip_cleanup
   skip_cleanup: true
