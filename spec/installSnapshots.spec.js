@@ -45,7 +45,7 @@ describe('installSnapshots', function() {
   });
 
   describe('updateChildDependencies', function() {
-    it('logs an error if an error occurs trying to find dist-tags for a dependency', function() {
+    it('should log an error if an error occurs trying to find dist-tags for a dependency', function() {
       dependenciesStub.push('dep1');
       childProcessStub.spawnSync.and.returnValue({ error: 'kaboom'});
 
@@ -53,7 +53,7 @@ describe('installSnapshots', function() {
       expect(console.error).toHaveBeenCalledWith('Error checking tags for', 'dep1', ':', 'kaboom');
     });
 
-    it('it should not rewrite the package.json if all dist-tag checks error out', function() {
+    it('should not rewrite the package.json if all dist-tag checks error out', function() {
       dependenciesStub.push('dep1');
       dependenciesStub.push('dep2');
       childProcessStub.spawnSync.and.returnValue({ error: 'kaboom'});
@@ -64,7 +64,7 @@ describe('installSnapshots', function() {
       expect(childProcessStub.spawn).toHaveBeenCalledWith('npm', ['install'], { stdio: 'inherit', shell: true })
     });
 
-    it('logs an error if there are no dist-tags for a dependency', function() {
+    it('should log an error if there are no dist-tags for a dependency', function() {
       dependenciesStub.push('dep1');
       childProcessStub.spawnSync.and.returnValue({ stdout: ''});
 
@@ -78,7 +78,7 @@ describe('installSnapshots', function() {
       );
     });
 
-    it('it should not rewrite the package.json if there are no dist-tag for any dependency', function() {
+    it('should not rewrite the package.json if there are no dist-tag for any dependency', function() {
       dependenciesStub.push('dep1');
       dependenciesStub.push('dep2');
       childProcessStub.spawnSync.and.returnValue({ stdout: ''});
@@ -89,7 +89,7 @@ describe('installSnapshots', function() {
       expect(childProcessStub.spawn).toHaveBeenCalledWith('npm', ['install'], { stdio: 'inherit', shell: true })
     });
 
-    it('rewrites the package.json file if a dependency matches the tag', function() {
+    it('should rewrite the package.json file if a dependency matches the tag', function() {
       dependenciesStub.push('dep1');
       childProcessStub.spawnSync.and.callFake(function() {
         return { stdout: '1.1.1-alpha.1'};
@@ -109,7 +109,7 @@ describe('installSnapshots', function() {
       expect(childProcessStub.spawn).toHaveBeenCalledWith('npm', ['install'], { stdio: 'inherit', shell: true })
     });
 
-    it('rewrites the package.json file for all dependencies that match the tag', function() {
+    it('should rewrite the package.json file for all dependencies that match the tag', function() {
       dependenciesStub.push('dep1');
       dependenciesStub.push('dep2');
       childProcessStub.spawnSync.and.callFake(function() {
@@ -417,7 +417,7 @@ describe('installSnapshots', function() {
   });
 
   describe('action', function() {
-    it('calls all functions in the correct order', function(done) {
+    it('should call all functions in the correct order', function(done) {
       let modifiedStub = [ { name: 'dep1', version: '1.1.1-alpha.1' } ];
 
       spyOn(installSnapshots, 'updateChildDependencies').and.callFake(function() {
@@ -441,7 +441,7 @@ describe('installSnapshots', function() {
       });
     });
 
-    it('exits if there is a problem installing modified dependencies', function(done) {
+    it('should exit if there is a problem installing modified dependencies', function(done) {
       let modifiedStub = [ { name: 'dep1', version: '1.1.1-alpha.1' } ];
 
       spyOn(installSnapshots, 'updateChildDependencies').and.returnValue(Promise.reject());
