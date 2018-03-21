@@ -175,7 +175,7 @@ npm does not put the same restrictions on `dist-tags` though, so the `installSna
 
 ## Example Using Travis CI
 
-`testable-artifact-builder` uses its own scripts to build snapshots of itself using Travis CI. You can use the [.travis.yml](https://github.com/ReadyTalk/testable-artifact-builder/blob/master/.travis.yml) file in this repo as an example for your own build.
+`testable-artifact-builder` uses its own scripts to build and publish snapshots of itself via Travis CI. You can use the [.travis.yml](https://github.com/ReadyTalk/testable-artifact-builder/blob/master/.travis.yml) file in this repo as an example for your own build.
 
 ## Publishing a New Release
 
