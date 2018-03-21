@@ -21,3 +21,4 @@ deploy:
     repo: ReadyTalk/testable-artifact-builder
     all_branches: true
   tag: ${TRAVIS_BRANCH}
+  skip_cleanup: true
