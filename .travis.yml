@@ -21,4 +21,6 @@ deploy:
     repo: ReadyTalk/testable-artifact-builder
     all_branches: true
   tag: ${TRAVIS_BRANCH}
+  # Prevent Travis CI from reverting changes from the snapshotProject script. Ref:
+  #   https://docs.travis-ci.com/user/deployment#Uploading-Files-and-skip_cleanup
   skip_cleanup: true

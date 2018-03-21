@@ -1,8 +1,8 @@
 # testable-artifact-builder
 
-This module is intended to help teams build testable artifacts based on feature branch work of Node.js projects that have complex dependency trees of in-house modules.
-
 [![Build Status](https://travis-ci.org/ReadyTalk/testable-artifact-builder.svg?branch=master)](https://travis-ci.org/ReadyTalk/testable-artifact-builder)
+
+This module is intended to help teams build testable artifacts based on feature branch work of Node.js projects that have complex dependency trees of in-house modules.
 
 ## What does that mean?
 
@@ -172,3 +172,17 @@ npm will throw an error that a version is invalid if it contains a slash. For th
 then the resulting version will be `1.2.4-my-ticket.5`
 
 npm does not put the same restrictions on `dist-tags` though, so the `installSnapshot` script makes no assumptions about slashes. It will search the `dist-tags` of the test dependencies using the exact string that is passed as the `tag`. Therefore, it is important to ensure that you publish to npm using the correct `dist-tag`, even if it does not match the version name of your module.
+
+## Example Using Travis CI
+
+`testable-artifact-builder` uses its own scripts to build snapshots of itself using Travis CI. You can use the [.travis.yml](https://github.com/ReadyTalk/testable-artifact-builder/blob/master/.travis.yml) file in this repo as an example for your own build.
+
+## Publishing a New Release
+
+To publish a new release version of `testable-artifact-builder`, follow these steps:
+
+1. Run `git checkout master` to ensure you are on the master branch.
+2. Run `npm version [major | minor | patch]` to correctly increment the version.
+3. Run `git push --follow-tags` to commit the updated package.json file and new tag.
+
+Travis CI will identify that the build was triggered by a Git Tag and publish a new release version as a result.
