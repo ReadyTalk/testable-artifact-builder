@@ -28,6 +28,7 @@ deploy:
   # Prevent Travis CI from reverting changes from the snapshotProject script. Ref:
   #   https://docs.travis-ci.com/user/deployment#Uploading-Files-and-skip_cleanup
   skip_cleanup: true
+
 # Deploy release versions when TRAVIS_TAG is set
 - provider: npm
   email: nathan.mike.thompson@gmail.com
