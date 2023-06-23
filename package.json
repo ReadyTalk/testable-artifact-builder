@@ -17,7 +17,7 @@
   "dependencies": {
     "chalk": "^2.2.0",
     "commander": "^2.11.0",
-    "semver": "^5.4.1"
+    "semver": "^7.5.2"
   },
   "devDependencies": {
     "jasmine": "^2.8.0",
